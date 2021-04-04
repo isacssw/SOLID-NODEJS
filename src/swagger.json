@@ -1,12 +1,129 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "SOLID Node.js Documentation",
-        "description": "This is an API User",
+        "title": " RentalX Documentation",
+        "description": "This is an API Rent",
         "version": "1.0.0",
         "contact": {
             "email": "isacssw@gmail.com"
         }
-
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": ["users"],
+                "summary": "Create an user",
+                "description": "Create a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "Rocketseat",
+                                    "description": "oi@rocketseat.com.br"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Operação realizada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "admin": {
+                                                "type": "boolean"
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email":{
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "Date"
+                                            },
+                                            "updated_at": {
+                                                "type": "Date"
+                                            }
+                                        },
+                                        "example": {
+                                            "id": "12631289-20bc-4723-a6ce-22b02120c34d",
+                                            "admin": false,
+                                            "name": "Isac",
+                                            "email": "isacssw@gmail.com",
+                                            "created_at": "2021-04-04T19:42:29.363Z",
+                                            "updated_at": "2021-04-04T19:42:29.363Z"
+                                          }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Email já está sendo utilizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    
+                                        "type": "object",
+                                        "properties": {
+                                            "error": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "example": {
+                                            "error": "This email is already in use."
+                                        }
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["users"],
+                "summary": "Retorna todos os usuários",
+                "description": "List All Categories",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
